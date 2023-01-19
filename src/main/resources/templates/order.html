@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/css/datatables.css}">
+
+  <div id="error"></div>
+
+</head>
+<body>
+
+<button id="showTableBtn">Show Table</button>
+<button id="showFormBtn">Show Form</button>
+
+  <table id="orderTable"class="display hidden" >
+    <thead>
+    <tr>
+      <th>customer Name</th>
+      <th>product </th>
+      <th>price</th>
+    </tr>
+
+
+    </thead>
+    <tbody>
+
+    </tbody>
+
+
+
+
+  </table>
+<div id="formContainer" style="display:none;">
+  <form id="form">
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName" required>
+    <br>
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" required>
+    <br>
+    <label for="address">Address :</label>
+    <input type="text" id="address" required>
+    <br>
+    <label for="payment">Payment :</label>
+    <input type="text" id="payment" required>
+    <br>
+    <label for="price">Payment :</label>
+    <input type="number" id="price" required>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+
+<script type="text/javascript" th:src="@{/js/jquery-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/datatables.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+
+
+
+</body>
+</html>
