@@ -3,6 +3,7 @@ package com.order.app.controller;
 import com.order.app.entity.Order;
 import com.order.app.entity.OrderInfo;
 import com.order.app.model.OrderInformation;
+import com.order.app.model.Status;
 import com.order.app.repository.OrderInfoRepository;
 import com.order.app.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,16 @@ public class OrderController {
         orderInfoRepository.save(newOrder);
         return newOrder;
     }
+
+    @PostMapping("/updateStatus")
+    public void updateStatus(@RequestBody Status status ){
+        orderInfoRepository.updateStatus(status.getStatusId(),status.getOrderId());
+
+
+
+    }
+
+
 
 
 

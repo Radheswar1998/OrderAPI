@@ -1,8 +1,18 @@
 $(document).ready(function() {
+
+    $(document).on('click','.showFormButton',function () {
+      $('#orderId').val($(this).attr('selectedOrderId'));
+
+    });
+
     const showFormBtn = document.getElementById("showFormBtn");
     const formContainer = $("#formContainer");
+    const showTableBtn = document.getElementById("showTableBtn");
+    const orderTable = $("#orderTable");
          showFormBtn.addEventListener("click", function() {
             formContainer.show();
+            orderTable.addClass("hidden");
+
 
             const form = document.getElementById("form");
 
@@ -53,8 +63,7 @@ $(document).ready(function() {
                                  }
                                  else{
                                         $.getJSON("/order/allOrderDetails", function(order) {
-                                        console.log(order);
-                                        console.log(address);
+
                                             order.forEach(function(obj) {
                                             console.log(obj.fullAddress);
                                             let string1 = obj.fullAddress;
@@ -84,7 +93,10 @@ $(document).ready(function() {
                                                                 }
                                                             })
                                                             .then(response => response.json())
-                                                            .then(data => console.log(data))
+                                                            .then(
+
+                                                            document.getElementById("error").innerHTML = "Successfully created order"
+                                                            )
                                                             .catch(error => console.error(error));
 
                                                 }
@@ -128,20 +140,36 @@ $(document).ready(function() {
 
 
 
-    const showTableBtn = document.getElementById("showTableBtn");
-    const orderTable = $("#orderTable");
+
 
     showTableBtn.addEventListener("click", function() {
         orderTable.removeClass("hidden");
+        formContainer.hide();
         $.getJSON("/order/allOrderDetails", function(order) {
             $('#orderTable').DataTable({
                 data: order,
                 columns: [
+                    { data: 'orderId' },
                     { data: 'customerName' },
                     { data: 'productName' },
-                    { data: 'price' }
+                    { data: 'price' },
+                    {
+                      data: null,
+                      defaultContent: "",
+                      createdCell: function (td, cellData, rowData, row, col) {
+                        $(td).html("<button selectedOrderId="+cellData.orderId+" class='showFormButton'>Show Form</button>");
+                                    }
+                    }
                 ]
             });
+            const showFormButton = document.querySelector(".showFormButton");
+            const formContainer = document.querySelector("#formOrderContainer");
+            const detailsForm = document.querySelector("#inputForm");
+            showFormButton.addEventListener("click", () => {
+                  formContainer.style.display = "block";
+
+
+                });
         });
     });
 

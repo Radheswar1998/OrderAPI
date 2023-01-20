@@ -11,14 +11,17 @@
 <body>
 
 <button id="showTableBtn">Show Table</button>
-<button id="showFormBtn">Show Form</button>
+<button id="showFormBtn">Show Order Form</button>
+
 
   <table id="orderTable"class="display hidden" >
     <thead>
     <tr>
+      <th>Order Id</th>
       <th>customer Name</th>
       <th>product </th>
       <th>price</th>
+      <th>Action</th>
     </tr>
 
 
@@ -45,17 +48,44 @@
     <label for="payment">Payment :</label>
     <input type="text" id="payment" required>
     <br>
-    <label for="price">Payment :</label>
+    <label for="price">Price :</label>
     <input type="number" id="price" required>
     <br>
     <button type="submit">Submit</button>
   </form>
 </div>
 
+<div id="formOrderContainer" style="display:none;">
+  <form id="inputForm">
+    <label for="orderId">order Id:</label>
+    <input type="number" id="orderId">
+    <button type="submit">Submit</button>
+  </form>
+  <form id="detailsForm" style="display:none;">
+    <label for="orderId2">order Id:</label>
+    <input type="text" id="orderId2" name="orderId" readonly>
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status" readonly>
+    <label for="customerName2">customer Name:</label>
+    <input type="text" id="customerName2" name="customerName" readonly>
+    <label for="statusId">Choose new Status:</label>
+    <select id="statusId" name="newStatus">
+      <option value="1">Order Initiated</option>
+      <option value="2">Order Placed</option>
+      <option value="3">Order Shipped</option>
+      <option value="4">Order Delivered</option>
+      <option value="5">Order return requested</option>
+    </select>
+    <button type="submit">Update</button>
+  </form>
+</div>
+
+
 
 <script type="text/javascript" th:src="@{/js/jquery-min.js}"></script>
 <script type="text/javascript" th:src="@{/js/datatables.js}"></script>
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
+<script type="text/javascript" th:src="@{/js/scriptForm2.js}"></script>
 
 
 
